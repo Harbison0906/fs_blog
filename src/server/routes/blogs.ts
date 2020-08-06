@@ -42,15 +42,22 @@ router.put('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id?', async (req, res) => {
-  const id = Number(req.params.id);
-  try {
-    const destroy = await db.blogs.destroy(id);
-    res.json('Successfully deleted!');
-  } catch (error) {
-    console.log(error);
-    res.status(500).json('This blog could not be deleted.')
-  }
-})
+router.delete('/:blogid', async (req, res) => {
+  const blogid = Number(req.params.blogid);
+  await db.blogtags.destroy(blogid); //delete this blog's reference first
+  await db.blogs.destroy(blogid); //delete safely now from blogs table
+  res.json({msg: 'destroyed' }); 
+});
+
+// router.delete('/:id?', async (req, res) => {
+//   const id = Number(req.params.id);
+//   try {
+//     const destroy = await db.blogs.destroy(id);
+//     res.json('Successfully deleted!');
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json('This blog could not be deleted.')
+//   }
+// })
 
 export default router;
