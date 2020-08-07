@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { IBlog } from '../utils/interfaces';
 
-export default class Edit extends Component<IEditProps, IEditState> {
+export default class EditBlog extends Component<IEditBlogProps, IEditBlogState> {
 
-  constructor(props: IEditProps) {
+  constructor(props: IEditBlogProps) {
     super(props);
     this.state = {
       title: '',
@@ -98,8 +98,8 @@ export default class Edit extends Component<IEditProps, IEditState> {
 
 }
 
-interface IEditProps extends RouteComponentProps<{ id: string }> { }
-interface IEditState {
+interface IEditBlogProps extends RouteComponentProps<{ id: string }> { }
+interface IEditBlogState {
   title: string,
   content: string
 }

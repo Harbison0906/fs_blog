@@ -38,7 +38,7 @@ export default class NewBlog extends Component<INewBlogProps, INewBlogState> {
 
   render() {
     return (
-      <section className="newBlog">
+      
         <div className="container">
           <section className="row justify-content-center">
             <article className="col-md-7">
@@ -64,7 +64,7 @@ export default class NewBlog extends Component<INewBlogProps, INewBlogState> {
             </article>
           </section>
         </div>
-      </section>
+      
     );
   }
 
