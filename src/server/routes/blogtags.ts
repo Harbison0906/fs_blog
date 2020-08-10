@@ -26,15 +26,6 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// router.delete('/:blogid?', async (req, res) => {
-//   const blogid = Number(req.params.id);
-//   try {
-//     const destroy = await db.blogtags.destroy(blogid);
-//     res.json('Successfully deleted!');
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json('This blogtag could not be deleted.')
-//   }
-// })
+
 
 export default router
