@@ -57,3 +57,9 @@ export interface IHomeProps extends RouteComponentProps<{ id: string }> { }
 export interface IHomeState {
   blogs: IBlog[]
 }
+
+// this.setState(prevState => {
+//   const blogs = Object.assign({}, prevState.blogs);
+//   blogs.title = blog.title;
+//   blogs._created = blog._created;
+//   blogs.content = blog.content;

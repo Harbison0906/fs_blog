@@ -1,5 +1,5 @@
 export interface IBlog {
-  id?=: string;
+  id?: string;
   title?: string;
   content?: string;
   _created?: number;
