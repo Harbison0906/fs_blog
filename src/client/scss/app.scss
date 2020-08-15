@@ -2,4 +2,12 @@ $theme-colors: (
     'primary': #0091ea //Covalence Blue!  :D
 );
 
+.link {
+    margin: 10px;
+}
+
+.card {
+    margin: 10px;
+}
+
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';

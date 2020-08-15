@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
+import * as moment from 'moment';
 import { IBlog } from '../utils/interfaces';
 import { ITags } from '../utils/interfaces';
+
 
 export default class BlogPost extends Component<IBlogPostProps, IBlogPostState> {
 
@@ -18,17 +20,13 @@ export default class BlogPost extends Component<IBlogPostProps, IBlogPostState> 
     };
   }
 
-  componentDidMount() {
-    let blogDetails: any = null,
-      id = this.props.match.params.id,
-      tagFetch = fetch(`/api/tags/${id}`).then(res => res.json());
-
-    fetch(`/api/blogs/${id}`)
-      .then(res => res.json())
-      .then((blog: IBlog) => {
-        return tagFetch;
-      })
-      .then(blogtags => this.setState({ tags: blogtags, blogs: blogDetails }))
+  async componentDidMount() {
+    let id = this.props.match.params.id;
+    const resBlogtags = await fetch(`/api/blogtags/${id}`);
+    const blogtags = await resBlogtags.json();
+    const resBlogs = await fetch(`/api/blogs/${id}`);
+    const blogs = await resBlogs.json();
+    this.setState({ tags: blogtags, blogs });
   }
 
   render() {
@@ -37,8 +35,11 @@ export default class BlogPost extends Component<IBlogPostProps, IBlogPostState> 
         <div className="card shadow-sm">
           <div className="card-body">
             <h4 className="card-title">{this.state.blogs.title}</h4>
+            {this.state.tags.map(tag => (
+              <span className="badge badge-pill badge-primary mx-2" key={tag.name}>{tag.name}</span>
+            ))}
             <h6 className="card-author">By Seth Harbison</h6>
-            <p className="card-date">{this.state.blogs._created}</p>
+            <p className="card-date">{moment(this.state.blogs._created).format('MMMM Do, YYYY')}</p>
             <p className="card-text">{this.state.blogs.content}</p>
           </div>
         </div>

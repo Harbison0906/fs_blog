@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as moment from 'moment';
 import { IBlog } from '../utils/interfaces';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
@@ -8,13 +9,12 @@ export default class Home extends Component<IHomeProps, IHomeState> {
     super(props);
     this.state = {
       blogs: []
-    };
+    }
   }
-
   componentDidMount() {
     fetch('/api/blogs')
-    .then(res => res.json())
-    .then(blogs => this.setState({ blogs }));
+      .then(res => res.json())
+      .then(blogs => this.setState({ blogs }));
   }
 
   render() {
@@ -30,7 +30,7 @@ export default class Home extends Component<IHomeProps, IHomeState> {
                     <div className="card-body">
                       <Link to={`/blogpost/${blog.id}`} className="card-title"><h5>{blog.title}</h5></Link>
                       <h6 className="card-author">By Seth Harbison</h6>
-                      <p className="card-date">{blog._created}</p>
+                      <p className="card-date">{moment(this.state.blogs._created).format('MMMM Do, YYYY')}</p>
                       <p className="card-text">{blog.content.substring(0, 75)} ...</p>
                       <Link className="link" to={`/edit/${blog.id}`} >
                         <button

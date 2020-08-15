@@ -6,9 +6,9 @@ import apiRouter from './routes';
 
 const app = express();
 
+app.use(morgan('dev'))
 app.use(express.static('public'));
 app.use(express.json());
-app.use(morgan('dev'))
 app.use('/api', apiRouter);
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html')))
 

@@ -21,9 +21,11 @@ router.get('/:id?', async (req, res, next) => {
 
 router.post('/', async (req, res) => {
   const blog = req.body;
+  //const authorid = req.user.id;
   try {
-    const insert = await db.blogs.insert(blog.title, blog.content);
-    res.json(blog);
+    const result = await db.blogs.insert(blog.title, blog.content);
+    // { insertId: 20 }
+    res.json(result);
   } catch (error) {
     console.log(error);
     res.status(500).json('Oops, we couldn\'t post this blog');

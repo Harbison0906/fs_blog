@@ -21,7 +21,7 @@ export default class App extends React.Component {
 							<br />
 						</div>
 						<Link className="link" to="/">Home</Link>
-						<Link className="link" to="/admin">New Post</Link>
+						<Link className="link" to="/newblog">New Post</Link>
 					</section>
 					<Switch>
 						<Route exact path="/" component={Home} />
