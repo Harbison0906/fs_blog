@@ -51,15 +51,6 @@ router.delete('/:blogid', async (req, res) => {
   res.json({msg: 'destroyed' }); 
 });
 
-// router.delete('/:id?', async (req, res) => {
-//   const id = Number(req.params.id);
-//   try {
-//     const destroy = await db.blogs.destroy(id);
-//     res.json('Successfully deleted!');
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json('This blog could not be deleted.')
-//   }
-// })
+
 
 export default router;
